@@ -4,10 +4,10 @@ function Aside({ userName, count }) {
   return (
     <div className="fixed-aside">
       <aside className="sidebar">
-        <nav>
+        <nav className="aside-flex">
           <li className="user-name">{userName}</li>
-          <li>
-            <NavLink className="user-name" to="/list">
+          <li className="li-m">
+            <NavLink className="user-name " to="/list">
               Список
             </NavLink>
             <span className="count">{count}</span>

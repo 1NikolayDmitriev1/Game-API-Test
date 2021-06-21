@@ -12,16 +12,20 @@ const Navbar = ({ logoutUser, addGameName }) => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark p-3">
+    <nav className="navbar main-navbar navbar-expand-lg navbar-dark p-3">
       <div className="d-flex w-100 justify-content-between align-items-center">
-        <span className=" btn btn-outline-success p-3 mx-3">
-          <NavLink to="/main">Главная</NavLink>
-        </span>
+        <NavLink className="btn btn-outline-success p-2 m-2" to="/main">
+          Главная
+        </NavLink>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            addGameName(value);
+
+            history.push("/search");
           }}
-          className="w-100 d-flex"
+          className="w-100 d-flex  align-items-center "
         >
           <input
             value={value}
@@ -32,11 +36,11 @@ const Navbar = ({ logoutUser, addGameName }) => {
             onKeyPress={(event) => {
               if (event.key === "Enter") {
                 addGameName(value);
-                console.log(1);
+
                 history.push("/search");
               }
             }}
-            className="input-search"
+            className="input-search form-control"
             type="text"
           ></input>
 
@@ -54,7 +58,7 @@ const Navbar = ({ logoutUser, addGameName }) => {
         </form>
 
         <button
-          className="btn btn-outline-success mx-3"
+          className="btn btn-outline-danger mx-3"
           onClick={() => {
             logoutHandler();
           }}

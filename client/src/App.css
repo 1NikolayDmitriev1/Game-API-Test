@@ -61,7 +61,7 @@ a:hover {
 }
 
 .heading {
-  font-size: 72px;
+  font-size: 65px;
   line-height: 74px;
   font-weight: 700;
   text-align: center;
@@ -80,6 +80,7 @@ a:hover {
   max-width: 350px;
   min-height: 300px;
   background-color: #202020;
+  border: 1px solid white;
   border-radius: 12px;
   box-shadow: 0 10px 20px 0 rgb(0 0 0 / 7%);
   overflow: hidden;
@@ -87,7 +88,7 @@ a:hover {
 
 .game-card-wrapper:hover {
   transform: translate(-10px, 10px);
-  border: 1px solid white
+  border: none
 }
 
 .card-medi>img {
@@ -119,7 +120,7 @@ a:hover {
 }
 
 .screen-img {
-  margin: 10px;
+  margin-left: 10px;
   width: 200px;
   height: 120px;
   border-radius: 6px;
@@ -131,10 +132,16 @@ a:hover {
   max-width: 800px;
 }
 
+.left-info {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
 .game-screenshots {
   max-width: 450px;
   display: flex;
   flex-wrap: wrap;
+
 }
 
 .game-data {
@@ -149,14 +156,14 @@ a:hover {
 
 .pages-prev {
   position: absolute;
-  top: 115px;
-  left: 350px
+  top: 155px;
+  left: 23%;
 }
 
 .pages-next {
   position: absolute;
-  top: 115px;
-  right: 350px
+  top: 155px;
+  right: 23%;
 }
 
 .img-plus {
@@ -232,4 +239,131 @@ a:hover {
 .filter {
   max-width: 300px;
   margin: 0 auto;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 40%;
+  right: 50%;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #dfc;
+  border-color: #dfc transparent #dfc transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.for-msg {
+  color: #e32b2b;
+  font-size: 24px;
+  font-weight: bold;
+
+}
+
+.my-node {
+  animation-direction: alternate;
+  animation-duration: 2s;
+  animation-name: move;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-origin: 50% 50%;
+}
+
+@keyframes move {
+
+
+  from {
+    transform: rotate(-3deg);
+  }
+
+  to {
+    transform: rotate(3deg);
+  }
+}
+
+.about-text {
+  text-align: justify;
+}
+
+@media(max-width:763px) {
+  .pages-prev {
+    position: fixed;
+    top: 210px;
+    left: 5%;
+  }
+
+  .game-content-wrap {
+    flex-wrap: wrap;
+  }
+
+  .pages-next {
+    position: fixed;
+    top: 210px;
+    right: 10%;
+  }
+
+  .fixed-aside {
+    position: fixed;
+  }
+}
+
+
+@media(max-width:660px) {
+  .main-navbar {
+    margin-bottom: 50px;
+  }
+
+  .aside-flex {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .li-m {
+    margin-right: 60px;
+  }
+
+  .fixed-aside {
+    position: absolute;
+    width: 100%;
+    top: 80px
+  }
+}
+
+@media(max-width:530px) {
+
+  .pages-prev {
+    position: absolute;
+    top: 210px;
+    left: 10%;
+  }
+
+  .game-data-wrap {
+    width: 100%;
+  }
+
+
+  .pages-next {
+    position: absolute;
+    top: 210px;
+    right: 10%;
+  }
 }

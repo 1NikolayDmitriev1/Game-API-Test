@@ -2,6 +2,7 @@ const initialState = {
   gameName: null,
   gameData: null,
   count: 0,
+  myListData: null,
 };
 const gameReduser = (state = initialState, action) => {
   switch (action.type) {
@@ -24,6 +25,12 @@ const gameReduser = (state = initialState, action) => {
         ...state,
         count: action.payload.count,
       };
+    case "GET_MY_LIST":
+      return {
+        ...state,
+        myListData: action.payload.data,
+      };
+
     default:
       return state;
   }

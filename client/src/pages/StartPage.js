@@ -81,7 +81,7 @@ function StartPage({ reqGameData, userId }) {
       </div>
     );
   } else {
-    return null;
+    return <div className="lds-dual-ring"></div>;
   }
 }
 const mapDispath = {

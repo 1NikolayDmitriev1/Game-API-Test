@@ -3,11 +3,19 @@ import Log from "../components/Log";
 import Reg from "../components/Reg";
 function AuthPage() {
   const [flag, setFlag] = useState(false);
-  if (flag) {
-    return <Reg setFlag={setFlag}></Reg>;
-  } else {
-    return <Log setFlag={setFlag}></Log>;
-  }
+  return (
+    <div>
+      <button
+        className="btn in-out-btn btn-outline-success "
+        onClick={() => {
+          setFlag(!flag);
+        }}
+      >
+        {flag === false ? "Вход" : "Регистрация"}
+      </button>
+      {flag === false ? <Reg></Reg> : <Log></Log>}
+    </div>
+  );
 }
 
 export default AuthPage;

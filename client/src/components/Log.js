@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { connect } from "react-redux";
 import { login } from "../redux/action-creaters/auth.actions";
-function Log({ loginUser, setFlag }) {
+function Log({ loginUser }) {
   const [form, setForm] = useState({ email: "", password: "", login: "" });
   const changeHandler = (event) => {
     setForm({
@@ -12,40 +12,31 @@ function Log({ loginUser, setFlag }) {
   };
   const [errorMassage, setError] = useState("");
   const loginHandler = async () => {
-    try {
-      const responce = await fetch("/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify({ password: form.password, login: form.login }),
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await responce.json();
-      if (responce.status === 200) {
-        loginUser(data.token, data.userId, data.login);
-      } else {
-        setError(data.massage);
-      }
-    } catch (e) {
-      console.log("Error");
+    const responce = await fetch("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({ password: form.password, login: form.login }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await responce.json();
+    if (responce.status === 200) {
+      loginUser(data.token, data.userId, data.login);
+    } else {
+      setError(data);
     }
   };
   return (
     <div>
-      <div>
-        <button
-          className="btn in-out-btn btn-outline-success "
-          onClick={() => {
-            setFlag(true);
+      <div className="from-container">
+        <form
+          onSubmit={(e) => {
+            loginHandler();
+            e.preventDefault();
           }}
         >
-          Регистрация
-        </button>
-      </div>
-      <div className="from-container">
-        <form>
           <h1>Вход</h1>
           <div className="mb-3">
-            <label for="exampleInputEmail1" className="form-label">
-              Email address
+            <label htmlFor="exampleInputEmail1" className="form-label">
+              Логин
             </label>
             <input
               type="text"
@@ -57,8 +48,8 @@ function Log({ loginUser, setFlag }) {
             ></input>
           </div>
           <div className="mb-3">
-            <label for="exampleInputPassword1" className="form-label">
-              Password
+            <label htmlFor="exampleInputPassword1" className="form-label">
+              Пароль
             </label>
             <input
               type="password"
@@ -70,14 +61,25 @@ function Log({ loginUser, setFlag }) {
           </div>
 
           <button
-            type="button"
+            type="submit"
             onClick={loginHandler}
             className="btn btn-outline-success"
           >
-            Submit
+            Подтвердить
           </button>
-          <p>{errorMassage}</p>
         </form>
+        <p className="for-msg">{errorMassage.massage}</p>
+        <div>
+          {errorMassage.hasOwnProperty("errors") === true
+            ? errorMassage.errors.map((e) => {
+                return (
+                  <p key={e.msg} className="for-msg">
+                    {e.msg}
+                  </p>
+                );
+              })
+            : ""}
+        </div>
       </div>
     </div>
   );

@@ -1,14 +1,15 @@
 import React from "react";
 import { useState } from "react";
-function Reg({  setFlag }) {
+function Reg() {
   const [form, setForm] = useState({ email: "", password: "", login: "" });
+  const [errorMassage, setError] = useState("");
   const changeHandler = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
     });
   };
-  const [errorMassage, setError] = useState("");
+
   const registerHandler = async () => {
     try {
       const responce = await fetch("/api/auth/register", {
@@ -17,29 +18,24 @@ function Reg({  setFlag }) {
         headers: { "Content-Type": "application/json" },
       });
       const data = await responce.json();
-      setError(data.massage);
+
+      setError(data);
     } catch (e) {
       console.log("Error");
     }
   };
   return (
     <div>
-      <div>
-        <button
-          className="btn in-out-btn btn-outline-success "
-          onClick={() => {
-            setFlag(false);
+      <div className="from-container">
+        <form
+          onSubmit={() => {
+            registerHandler();
           }}
         >
-          Войти
-        </button>
-      </div>
-      <div className="from-container">
-        <form>
           <h1>Регистрация</h1>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
-              Email address
+              E-Mail
             </label>
             <input
               type="email"
@@ -52,7 +48,7 @@ function Reg({  setFlag }) {
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputText" className="form-label">
-              Login
+              Логин
             </label>
             <input
               type="text"
@@ -64,7 +60,7 @@ function Reg({  setFlag }) {
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
+              Пароль
             </label>
             <input
               type="password"
@@ -76,14 +72,25 @@ function Reg({  setFlag }) {
           </div>
 
           <button
-            type="button"
+            type="submit"
             className="btn btn-outline-success"
             onClick={registerHandler}
           >
-            Submit
+            Подтвердить
           </button>
-          <p>{errorMassage}</p>
         </form>
+        <p className="for-msg">{errorMassage.massage}</p>
+        <div>
+          {errorMassage.hasOwnProperty("errors")
+            ? errorMassage.errors.map((e) => {
+                return (
+                  <p key={e.msg} className="for-msg">
+                    {e.msg}
+                  </p>
+                );
+              })
+            : ""}
+        </div>
       </div>
     </div>
   );

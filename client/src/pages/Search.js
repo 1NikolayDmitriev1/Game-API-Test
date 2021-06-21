@@ -17,6 +17,7 @@ function Search({ gameName }) {
       },
     });
     const data = await res.json();
+
     setData(data);
   };
 
@@ -37,7 +38,7 @@ function Search({ gameName }) {
       </>
     );
   } else {
-    return null;
+    return <div className="lds-dual-ring"></div>;
   }
 }
 const mapProps = (store) => {
