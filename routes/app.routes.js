@@ -27,10 +27,10 @@ router.post("/search", async (req, res) => {
   }
 });
 router.post("/game/:name", async (req, res) => {
-  let urlDefault = `https://api.rawg.io/api/games/${req.body.id}?key=eba7b94026164b889f425dfbf7263079`;
-
+  let urlDefault = `https://api.rawg.io/api/games/${req.body.id}?key=${process.env.API_KEY}`;
   try {
     const resAPI = await axios.get(urlDefault);
+    
     res.status(200).json(resAPI.data);
   } catch (e) {
     res.status(400).json({ message: "!!!" });
