@@ -89,6 +89,7 @@ export const seveDataFunc = (name, id, screen, type) => {
       },
     });
     const resData = await res.json();
+
     dispatch(saveGameData(resData, screen, type));
   };
 };

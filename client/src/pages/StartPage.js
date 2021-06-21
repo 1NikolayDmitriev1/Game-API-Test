@@ -22,7 +22,6 @@ function StartPage({ reqGameData, userId }) {
       `${genersValue !== "" ? `genres=${genersValue}` : ""}&${
         platforValue !== "" ? `platforms=${platforValue}` : ""
       } `,
-
       countPages,
       setData,
       userId
@@ -77,6 +76,11 @@ function StartPage({ reqGameData, userId }) {
                 <GameCard key={game.id} data={game} type={"add"}></GameCard>
               );
             })}
+        </div>
+        <div className="art-bg">
+          <div className="art-wrapper">
+            <div className="art bg-style-start bg-style-all"></div>
+          </div>
         </div>
       </div>
     );

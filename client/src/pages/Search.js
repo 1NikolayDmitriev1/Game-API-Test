@@ -35,6 +35,11 @@ function Search({ gameName }) {
             return <GameCard key={game.id} data={game} type="add"></GameCard>;
           })}
         </div>
+        <div className="art-bg">
+          <div className="art-wrapper">
+            <div className="art bg-style-search bg-style-all"></div>
+          </div>
+        </div>
       </>
     );
   } else {

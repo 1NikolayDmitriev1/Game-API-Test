@@ -22,11 +22,12 @@ function GameCard({ data, seveDataFunc, type, userId }) {
       </NavLink>
       <div className="card-info">
         <h4>{data.name}</h4>
-        <div className="d-flex">
+        <div className="d-flex justify-content-between">
           <AddOrDellImg data={{ data, type, userId, setMess }}></AddOrDellImg>
           <CSSTransition in={flag} timeout={1000} className="my-node">
             <div className="my-node ">{message}</div>
           </CSSTransition>
+          <span className="game-meta-text meta-score ">{data.metacritic}</span>
         </div>
       </div>
     </div>

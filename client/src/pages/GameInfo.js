@@ -3,18 +3,11 @@ import { connect } from "react-redux";
 import AddOrDellImg from "../components/AddOrDellImg";
 function GameInfo({ gameData, userId }) {
   const [message, setMess] = useState("");
-  if (gameData != null) {
-    const { data, screen, type } = gameData;
-    const BgStyle = {
-      height: "500px",
-      backgroundColor: "transparent",
-      backgroundImage: `linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)),url(${data.background_image})`,
-      Zindex: "1",
-      backgroundRepeat: "no-repeat",
-      maxHeight: "100%",
-      backgroundSize: "cover",
-    };
 
+  if (gameData === null) {
+    return null;
+  } else {
+    const { data, screen, type } = gameData;
     return (
       <>
         <main>
@@ -115,14 +108,17 @@ function GameInfo({ gameData, userId }) {
 
           <div className="art-bg">
             <div className="art-wrapper">
-              <div style={BgStyle} className="art"></div>
+              <div
+                style={{
+                  backgroundImage: ` linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)),url(${data.background_image})`,
+                }}
+                className="art bg-style-all"
+              ></div>
             </div>
           </div>
         </main>
       </>
     );
-  } else {
-    return null;
   }
 }
 

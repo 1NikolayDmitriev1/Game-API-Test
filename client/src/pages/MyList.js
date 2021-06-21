@@ -41,6 +41,11 @@ function MyList({ userId, count, getMyList, myListData }) {
             );
           })}
         </div>
+        <div className="art-bg">
+          <div className="art-wrapper">
+            <div className="art bg-style-all "></div>
+          </div>
+        </div>
       </div>
     );
   }
