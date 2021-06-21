@@ -6,7 +6,7 @@ router.post("/main", async (req, res) => {
   try {
     const user = await User.findById(req.body.userId);
     const resAPI = await axios.get(
-      `https://api.rawg.io/api/games?${req.body.params}&page_size=21&page=${req.body.count}&key=eba7b94026164b889f425dfbf7263079`
+      `https://api.rawg.io/api/games?${req.body.params}&page_size=21&page=${req.body.count}&key=${process.env.API_KEY}`
     );
     res
       .status(200)
@@ -17,7 +17,7 @@ router.post("/main", async (req, res) => {
 });
 
 router.post("/search", async (req, res) => {
-  let urlDefault = `https://api.rawg.io/api/games?page_size=21&page=${req.body.count}&search=${req.body.params}?key=eba7b94026164b889f425dfbf7263079`;
+  let urlDefault = `https://api.rawg.io/api/games?page_size=21&page=${req.body.count}&search=${req.body.params}&key=${process.env.API_KEY}`;
 
   try {
     const resAPI = await axios.get(urlDefault);
@@ -48,7 +48,7 @@ router.post("/add", async (req, res) => {
           .json({ message: "Игра добавлена", count: user.gameList.length });
       } else {
         res.status(200).json({
-          message: "игра уже есть в списке",
+          message: "Игра уже есть в списке",
           count: user.gameList.length,
         });
       }

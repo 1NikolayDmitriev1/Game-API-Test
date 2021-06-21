@@ -8,8 +8,10 @@ router.post(
   "/register",
   [
     check("email", "Некорректный email").isEmail(),
-    check("password", "Минимальная длина 6 символов").isLength({ min: 6 }),
-    check("login", "Минимальная длина 3 символов").isLength({ min: 3 }),
+    check("password", "Минимальная длина пароля 6 символов").isLength({
+      min: 6,
+    }),
+    check("login", "Минимальная длина логина 3 символов").isLength({ min: 3 }),
   ],
   async (req, res) => {
     try {
@@ -17,7 +19,7 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
-          massage: "Некорректные данные при регтстрации",
+          massage: "Некорректные данные при регистрации",
         });
       }
       const { login, email, password } = req.body;
@@ -34,7 +36,7 @@ router.post(
       await user.save();
       res.status(201).json({ massage: "Пользователь создан!!!" });
     } catch (e) {
-      res.status(500).json({ message: "Фигня" });
+      res.status(500).json({ message: "Ошибка" });
     }
   }
 );
@@ -74,7 +76,7 @@ router.post(
         massage: "ok",
       });
     } catch (e) {
-      res.status(500).json({ message: "Фигня" });
+      res.status(500).json({ message: "Ошибка" });
     }
   }
 );
