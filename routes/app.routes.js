@@ -2,11 +2,12 @@ const { Router } = require("express");
 const User = require("../models/User");
 const axios = require("axios");
 const router = Router();
+const { apiKey } = require("../config/keys");
 router.post("/main", async (req, res) => {
   try {
     const user = await User.findById(req.body.userId);
     const resAPI = await axios.get(
-      `https://api.rawg.io/api/games?${req.body.params}&page_size=21&page=${req.body.count}&key=${process.env.API_KEY}`
+      `https://api.rawg.io/api/games?${req.body.params}&page_size=21&page=${req.body.count}&key=${apiKey}`
     );
     res
       .status(200)
@@ -17,7 +18,7 @@ router.post("/main", async (req, res) => {
 });
 
 router.post("/search", async (req, res) => {
-  let urlDefault = `https://api.rawg.io/api/games?page_size=21&page=${req.body.count}&search=${req.body.params}&key=${process.env.API_KEY}`;
+  let urlDefault = `https://api.rawg.io/api/games?page_size=21&page=${req.body.count}&search=${req.body.params}&key=${apiKey}`;
 
   try {
     const resAPI = await axios.get(urlDefault);
@@ -27,10 +28,10 @@ router.post("/search", async (req, res) => {
   }
 });
 router.post("/game/:name", async (req, res) => {
-  let urlDefault = `https://api.rawg.io/api/games/${req.body.id}?key=${process.env.API_KEY}`;
+  let urlDefault = `https://api.rawg.io/api/games/${req.body.id}?key=${apiKey}`;
   try {
     const resAPI = await axios.get(urlDefault);
-    
+
     res.status(200).json(resAPI.data);
   } catch (e) {
     res.status(400).json({ message: "!!!" });
