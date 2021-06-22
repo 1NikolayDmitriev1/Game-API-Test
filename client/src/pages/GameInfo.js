@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import AddOrDellImg from "../components/AddOrDellImg";
 function GameInfo({ gameData, userId }) {
   const [message, setMess] = useState("");
+  const [flag, setFlag] = useState(false);
+  useEffect(() => {
+    setInterval(() => setFlag(true), 800);
+  }, []);
 
-  if (gameData === null) {
-    return null;
+  if (gameData === null || flag === false) {
+    return <div className="lds-dual-ring"></div>;
   } else {
     const { data, screen, type } = gameData;
     return (

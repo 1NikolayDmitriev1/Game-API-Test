@@ -14,6 +14,7 @@ const gameReduser = (state = initialState, action) => {
     case "SAVE_GAME_DATA":
       return {
         ...state,
+
         gameData: {
           data: action.payload.data,
           screen: action.payload.screen,

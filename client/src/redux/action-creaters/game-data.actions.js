@@ -6,7 +6,7 @@ export const addToStoreGameName = (gameName) => {
     },
   };
 };
-export const saveGameData = (data, screen, type) => {
+export const saveGameData = (data, screen, type, name) => {
   return {
     type: "SAVE_GAME_DATA",
     payload: {

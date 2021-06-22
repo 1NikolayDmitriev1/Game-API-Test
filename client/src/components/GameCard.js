@@ -7,6 +7,7 @@ import AddOrDellImg from "./AddOrDellImg";
 function GameCard({ data, seveDataFunc, type, userId }) {
   const [message, setMess] = useState("");
   const [flag, setFlag] = useState(false);
+
   return (
     <div className="game-card-wrapper ">
       <NavLink
